@@ -1,5 +1,7 @@
 {
   "name": "symbol-autocomplete",
+  "description": "Easily transform quick drafts and wireframes into symbols.",
+  "author": "Ariel Verber",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=3.0"

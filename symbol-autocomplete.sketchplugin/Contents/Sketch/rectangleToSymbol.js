@@ -170,7 +170,7 @@ function overrideText(textlayer, symbols) {
   var symbol = findSymbol(symbols, textlayer.text);
   var instance = symbol.createNewInstance();
   instance.frame.x = textlayer.frame.x;
-  instance.frame.y = textlayer.frame.y;
+  instance.frame.y = textlayer.frame.y - instance.frame.height;
   overrideLayers(textlayer, instance);
 }
 
@@ -246,9 +246,9 @@ function onRectangle(context) {
     }
 
     if (count === 1) {
-      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " layer replaced with a symbol.");
+      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " layer replaced with a symbol. 🎉");
     } else {
-      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " layers replaced with symbols.");
+      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " layers replaced with symbols. 🎉");
     }
   } else {
     sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("Nothing was selected.");

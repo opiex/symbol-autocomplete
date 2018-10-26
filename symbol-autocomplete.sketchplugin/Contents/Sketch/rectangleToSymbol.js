@@ -117,6 +117,8 @@ var UI = __webpack_require__(/*! sketch/ui */ "sketch/ui");
 });
 
 function findSymbol(symbols, name) {
+  var string = name;
+
   for (var i = 0; i < symbols.length; i++) {
     if (symbols[i].name === name) {
       return symbols[i];
@@ -170,7 +172,7 @@ function overrideText(textlayer, symbols) {
   var symbol = findSymbol(symbols, textlayer.text);
   var instance = symbol.createNewInstance();
   instance.frame.x = textlayer.frame.x;
-  instance.frame.y = textlayer.frame.y - instance.frame.height;
+  instance.frame.y = textlayer.frame.y + textlayer.frame.height - instance.frame.height;
   overrideLayers(textlayer, instance);
 }
 

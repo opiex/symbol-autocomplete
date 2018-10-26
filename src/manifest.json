@@ -1,0 +1,20 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "icon": "icon.png",
+  "commands": [
+    {
+        "name" : "Rectangle to Button",
+        "identifier" : "rectangle-to-button",
+        "shortcut": "cmd ?",
+        "description": "Replace your simple shape to similar symbol",
+        "script" : "./rectangleToSymbol.js"
+      }
+  ],
+  "menu": {
+    "title": "Symbol Autocomplete",
+    "items": [
+      "rectangle-to-button"
+    ]
+  }
+}

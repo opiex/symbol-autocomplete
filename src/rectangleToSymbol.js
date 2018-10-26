@@ -31,6 +31,7 @@ function overrideButton(rectangle, symbols){
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
+  sketch.UI.message("replaced button");
 }
 
 function overrideFooter(rectangle, symbols){
@@ -39,8 +40,8 @@ function overrideFooter(rectangle, symbols){
   instance.frame.x = rectangle.frame.x;
   instance.frame.width = rectangle.parent.frame.width;
   instance.frame.y = rectangle.parent.frame.height - symbol.frame.height;
-  // 633 = 714 - 249
   overrideLayers(rectangle, instance);
+  sketch.UI.message("replaced footer");
 }
 
 function overrideHeader(rectangle, symbols){
@@ -50,6 +51,7 @@ instance.frame.x = rectangle.frame.x;
 instance.frame.y = rectangle.frame.y;
 instance.frame.width = rectangle.parent.frame.width;
 overrideLayers(rectangle, instance);
+sketch.UI.message("replaced header");
 }
 
 function overrideCheckbox(rectangle, symbols){
@@ -58,6 +60,7 @@ function overrideCheckbox(rectangle, symbols){
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
+  sketch.UI.message("replaced checkbox");
 }
 
 function filterRelevantSymbols(rectangle) {
@@ -69,6 +72,7 @@ function filterRelevantSymbols(rectangle) {
   //check if header
   if(x === 0 && y === 0 && width === rectangle.parent.frame.width){
     overrideHeader(rectangle, symbols);
+    sketch.UI.message("replaced header");
   }
   //check if footer
   else if(x === 0 && width === rectangle.parent.frame.width && y + height === rectangle.parent.frame.height){
@@ -77,16 +81,17 @@ function filterRelevantSymbols(rectangle) {
   //check if button
   else if(width >= 80 && height <= 80){
     overrideButton(rectangle, symbols);
+    sketch.UI.message("No rectangle selected.");
   }
   //check if checkbox
   else if(width <= 50 && height <= 50 && width === height){
     overrideCheckbox(rectangle, symbols);
+    sketch.UI.message("No rectangle selected.");
   }
   return;
 }
 
 export function onRectangle(context) {
-  sketch.UI.message("Called !");
   var document = sketch.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;

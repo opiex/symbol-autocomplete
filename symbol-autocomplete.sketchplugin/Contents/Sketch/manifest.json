@@ -21,7 +21,7 @@
   "name": "Symbol Autocomplete",
   "identifier": "Symbol Autocomplete",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com/opiex/symbol-autocomplete/master/.appcast.xml",
+  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
   "author": "Ariel Verber",
   "authorEmail": "opiedesigns@gmail.com"
 }

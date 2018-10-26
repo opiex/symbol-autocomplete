@@ -139,6 +139,7 @@ function overrideButton(rectangle, symbols) {
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
+  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced button");
 }
 
 function overrideFooter(rectangle, symbols) {
@@ -146,9 +147,9 @@ function overrideFooter(rectangle, symbols) {
   var instance = symbol.createNewInstance();
   instance.frame.x = rectangle.frame.x;
   instance.frame.width = rectangle.parent.frame.width;
-  instance.frame.y = rectangle.parent.frame.height - symbol.frame.height; // 633 = 714 - 249
-
+  instance.frame.y = rectangle.parent.frame.height - symbol.frame.height;
   overrideLayers(rectangle, instance);
+  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced footer");
 }
 
 function overrideHeader(rectangle, symbols) {
@@ -158,6 +159,7 @@ function overrideHeader(rectangle, symbols) {
   instance.frame.y = rectangle.frame.y;
   instance.frame.width = rectangle.parent.frame.width;
   overrideLayers(rectangle, instance);
+  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced header");
 }
 
 function overrideCheckbox(rectangle, symbols) {
@@ -166,6 +168,7 @@ function overrideCheckbox(rectangle, symbols) {
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
+  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced checkbox");
 }
 
 function filterRelevantSymbols(rectangle) {
@@ -177,22 +180,24 @@ function filterRelevantSymbols(rectangle) {
 
   if (x === 0 && y === 0 && width === rectangle.parent.frame.width) {
     overrideHeader(rectangle, symbols);
+    sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced header");
   } //check if footer
   else if (x === 0 && width === rectangle.parent.frame.width && y + height === rectangle.parent.frame.height) {
       overrideFooter(rectangle, symbols);
     } //check if button
     else if (width >= 80 && height <= 80) {
         overrideButton(rectangle, symbols);
+        sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("No rectangle selected.");
       } //check if checkbox
       else if (width <= 50 && height <= 50 && width === height) {
           overrideCheckbox(rectangle, symbols);
+          sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("No rectangle selected.");
         }
 
   return;
 }
 
 function onRectangle(context) {
-  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("Called !");
   var document = sketch__WEBPACK_IMPORTED_MODULE_0___default.a.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;

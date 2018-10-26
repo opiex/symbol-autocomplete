@@ -180,33 +180,47 @@ function filterRelevantSymbols(rectangle) {
 
   if (x === 0 && y === 0 && width === rectangle.parent.frame.width) {
     overrideHeader(rectangle, symbols);
-    sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("replaced header");
+    return 1;
   } //check if footer
   else if (x === 0 && width === rectangle.parent.frame.width && y + height === rectangle.parent.frame.height) {
       overrideFooter(rectangle, symbols);
+      return 1;
     } //check if button
     else if (width >= 80 && height <= 80) {
         overrideButton(rectangle, symbols);
-        sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("No rectangle selected.");
+        return 1;
       } //check if checkbox
       else if (width <= 50 && height <= 50 && width === height) {
           overrideCheckbox(rectangle, symbols);
-          sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("No rectangle selected.");
+          return 1;
         }
 
-  return;
+  return null;
 }
 
 function onRectangle(context) {
   var document = sketch__WEBPACK_IMPORTED_MODULE_0___default.a.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;
+  var symbol;
+  var count = 0;
 
-  if (layers.length === 1) {
-    var rectangle = layers[0];
-    var symbol = filterRelevantSymbols(rectangle);
+  if (layers.length >= 1) {
+    for (var i = 0; i < layers.length; i++) {
+      symbol = filterRelevantSymbols(layers[i]);
+
+      if (symbol !== null) {
+        count++;
+      }
+    }
+
+    if (count === 1) {
+      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " rectangle replaced with a symbol.");
+    } else {
+      sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message(count + " rectangles replaced with symbols.");
+    }
   } else {
-    sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("No rectangle selected.");
+    sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("Nothing was selected.");
   }
 }
 

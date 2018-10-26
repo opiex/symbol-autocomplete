@@ -6,9 +6,9 @@
     {
         "name" : "Rectangle to Button",
         "identifier" : "rectangle-to-button",
-        "shortcut": "cmd j",
         "description": "Replace your simple shape to similar symbol",
-        "script" : "./rectangleToSymbol.js"
+        "script" : "./rectangleToSymbol.js",
+        "shortcut": "cmd option k"
       }
   ],
   "menu": {

@@ -19,9 +19,12 @@ The following transformations are supported:
 - **Any text layer** into the symbol with the corresponding name (example: Text layer with the text 'btn-blue' into the symbol named `btn-blue`)
 
 
-### How it works
+### Constraints
 
 The symbol that will replace the selected shape needs to have a relevant word in the string to be recognized.
-For example: `Compononents/footer` would be identified as a footer.
+**For example:** A symbol called `Compononents/footer` would be identified as a footer.
 
 In case two symbols have the word 'footer' in their name, the one with the shortest name would be the one selected.
+**Examples:**
+- A symbol called `Compononents/footer` would be identified as a footer even if there is a symbol called `Components/footer-dark`.
+- A symbol called `footer` would be identified as a footer even if there is a symbol called `Components/footer`.

@@ -24,5 +24,9 @@
   "author": "Ariel Verber <opiedesigns@gmail.com>",
   "dependencies": {
     "sketch-module-web-view": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opiex/symbol-autocomplete"
   }
 }

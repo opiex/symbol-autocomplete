@@ -184,7 +184,7 @@ function filterRelevantSymbols(rectangle) {
     else if (width >= 80 && height <= 80) {
         overrideButton(rectangle, symbols);
       } //check if checkbox
-      else if (width <= 50 && height <= 50) {
+      else if (width <= 50 && height <= 50 && width === height) {
           overrideCheckbox(rectangle, symbols);
         }
 
@@ -192,6 +192,7 @@ function filterRelevantSymbols(rectangle) {
 }
 
 function onRectangle(context) {
+  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("Called !");
   var document = sketch__WEBPACK_IMPORTED_MODULE_0___default.a.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;

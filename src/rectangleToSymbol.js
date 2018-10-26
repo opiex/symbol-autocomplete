@@ -79,13 +79,14 @@ function filterRelevantSymbols(rectangle) {
     overrideButton(rectangle, symbols);
   }
   //check if checkbox
-  else if(width <= 50 && height <= 50){
+  else if(width <= 50 && height <= 50 && width === height){
     overrideCheckbox(rectangle, symbols);
   }
   return;
 }
 
 export function onRectangle(context) {
+  sketch.UI.message("Called !");
   var document = sketch.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;

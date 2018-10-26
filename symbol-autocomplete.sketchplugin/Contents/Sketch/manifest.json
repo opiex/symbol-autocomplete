@@ -6,7 +6,7 @@
     {
       "name": "Rectangle to Button",
       "identifier": "rectangle-to-button",
-      "shortcut": "cmd ?",
+      "shortcut": "cmd j",
       "description": "Replace your simple shape to similar symbol",
       "script": "rectangleToSymbol.js"
     }
@@ -21,7 +21,7 @@
   "name": "Symbol Autocomplete",
   "identifier": "Symbol Autocomplete",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
+  "appcast": "https://raw.githubusercontent.com/opiex/symbol-autocomplete/master/.appcast.xml",
   "author": "Ariel Verber",
   "authorEmail": "opiedesigns@gmail.com"
 }

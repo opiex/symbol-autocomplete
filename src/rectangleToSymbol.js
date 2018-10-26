@@ -10,7 +10,6 @@ export default function() {
 }
 
 function findSymbol(symbols, name){
-  // sketch.UI.message("overriding " +name);
   for(var i = 0; i < symbols.length; i++){
     if (symbols[i].name === name){
       return symbols[i];
@@ -31,7 +30,6 @@ function overrideButton(rectangle, symbols){
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
-  sketch.UI.message("replaced button");
 }
 
 function overrideFooter(rectangle, symbols){
@@ -41,7 +39,6 @@ function overrideFooter(rectangle, symbols){
   instance.frame.width = rectangle.parent.frame.width;
   instance.frame.y = rectangle.parent.frame.height - symbol.frame.height;
   overrideLayers(rectangle, instance);
-  sketch.UI.message("replaced footer");
 }
 
 function overrideHeader(rectangle, symbols){
@@ -51,7 +48,6 @@ instance.frame.x = rectangle.frame.x;
 instance.frame.y = rectangle.frame.y;
 instance.frame.width = rectangle.parent.frame.width;
 overrideLayers(rectangle, instance);
-sketch.UI.message("replaced header");
 }
 
 function overrideCheckbox(rectangle, symbols){
@@ -60,40 +56,78 @@ function overrideCheckbox(rectangle, symbols){
   instance.frame.x = rectangle.frame.x;
   instance.frame.y = rectangle.frame.y;
   overrideLayers(rectangle, instance);
-  sketch.UI.message("replaced checkbox");
 }
 
-function filterRelevantSymbols(rectangle) {
-  var x = rectangle.frame.x;
-  var y = rectangle.frame.y;
-  var width = rectangle.frame.width;
-  var height = rectangle.frame.height;
+function overrideText(textlayer, symbols){
+  var symbol = findSymbol(symbols, textlayer.text);
+  var instance = symbol.createNewInstance();
+  instance.frame.x = textlayer.frame.x;
+  instance.frame.y = textlayer.frame.y;
+  overrideLayers(textlayer, instance);
+}
+
+function overrideRadioButton(oval, symbols){
+  var symbol = findSymbol(symbols, "radiobutton");
+  var instance = symbol.createNewInstance();
+  instance.frame.x = oval.frame.x;
+  instance.frame.y = oval.frame.y;
+  overrideLayers(oval, instance);
+}
+
+function overrideInput(line, symbols){
+  var symbol = findSymbol(symbols, "input");
+  var instance = symbol.createNewInstance();
+  instance.frame.x = line.frame.x;
+  instance.frame.y = line.frame.y - instance.frame.height;
+  overrideLayers(line, instance);
+}
+
+function filterRelevantSymbols(layer) {
+  var x = layer.frame.x;
+  var y = layer.frame.y;
+  var width = layer.frame.width;
+  var height = layer.frame.height;
   var symbols = document.getSymbols();
+  var typeOfLayer = String(layer.sketchObject.class());
+  //check if text
+  if(typeOfLayer === 'MSTextLayer'){
+    overrideText(layer, symbols);
+    return 1;
+  }
   //check if header
-  if(x === 0 && y === 0 && width === rectangle.parent.frame.width){
-    overrideHeader(rectangle, symbols);
+  else if(typeOfLayer === 'MSRectangleShape' && x === 0 && y === 0 && width === layer.parent.frame.width){
+    overrideHeader(layer, symbols);
     return 1;
   }
   //check if footer
-  else if(x === 0 && width === rectangle.parent.frame.width && y + height === rectangle.parent.frame.height){
-    overrideFooter(rectangle, symbols);
+  else if(typeOfLayer === 'MSRectangleShape' && x === 0 && width === layer.parent.frame.width && y + height === layer.parent.frame.height){
+    overrideFooter(layer, symbols);
     return 1;
   }
   //check if button
-  else if(width >= 80 && height <= 80){
-    overrideButton(rectangle, symbols);
+  else if(typeOfLayer === 'MSRectangleShape' && width >= 80 && height <= 100){
+    overrideButton(layer, symbols);
+    return 1;
+  }
+  //check if radio button
+  else if(typeOfLayer === 'MSOvalShape' && width <= 50 && height <= 50){
+    overrideRadioButton(layer, symbols);
     return 1;
   }
   //check if checkbox
-  else if(width <= 50 && height <= 50 && width === height){
-    overrideCheckbox(rectangle, symbols);
+  else if(typeOfLayer === 'MSRectangleShape' && width <= 50 && height <= 50 && width === height){
+    overrideCheckbox(layer, symbols);
+    return 1;
+  }
+  //check if input
+  else if(typeOfLayer === 'MSShapePathLayer' && height <= 3){
+    overrideInput(layer, symbols);
     return 1;
   }
   return null;
 }
 
 export function onRectangle(context) {
-  var document = sketch.getSelectedDocument();
   var page = document.selectedPage;
   var layers = document.selectedLayers.layers;
   var symbol;
@@ -106,10 +140,10 @@ export function onRectangle(context) {
     }
   }
   if(count === 1){
-    sketch.UI.message(count +" rectangle replaced with a symbol.");
+    sketch.UI.message(count +" layer replaced with a symbol.");
   }
   else{
-    sketch.UI.message(count +" rectangles replaced with symbols.");
+    sketch.UI.message(count +" layers replaced with symbols.");
   }
   } else {
     sketch.UI.message("Nothing was selected.");

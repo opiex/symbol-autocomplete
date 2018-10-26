@@ -114,18 +114,33 @@ var UI = __webpack_require__(/*! sketch/ui */ "sketch/ui");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   onRectangle();
-});
+}); // function findSymbol(symbols, name){
+//   for(var i = 0; i < symbols.length; i++){
+//     if (symbols[i].name === name){
+//       return symbols[i];
+//     }
+//   }
+//   return null;
+// }
 
 function findSymbol(symbols, name) {
-  var string = name;
+  var searchedString = name.toUpperCase();
+  var currentString;
+  var minLength = 999;
+  var relevantSymbol = null;
 
   for (var i = 0; i < symbols.length; i++) {
-    if (symbols[i].name === name) {
-      return symbols[i];
+    currentString = symbols[i].name.toUpperCase();
+
+    if (currentString.indexOf(searchedString) !== -1 && currentString.length < minLength) {
+      relevantSymbol = symbols[i];
+      minLength = searchedString.length;
     }
+
+    console.log("current string: " + currentString + " , length: " + currentString.length);
   }
 
-  return null;
+  return relevantSymbol;
 }
 
 function overrideLayers(rectangle, instance) {

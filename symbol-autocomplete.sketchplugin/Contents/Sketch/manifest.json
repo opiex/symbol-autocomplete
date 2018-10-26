@@ -18,6 +18,7 @@
     ]
   },
   "version": "0.1.0",
+  "description": "Easily transform quick drafts and wireframes into symbols.",
   "name": "Symbol Autocomplete",
   "identifier": "Symbol Autocomplete",
   "disableCocoaScriptPreprocessor": true,

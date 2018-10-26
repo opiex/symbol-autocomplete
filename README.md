@@ -8,13 +8,15 @@ Select the layer you want to transform to a symbol and click cmd + ctrl + k.
 
 ### Supported transformations:
 
-- Rectangle into **button**
-- Small square into **checkbox**
-- Small circle into radio **button**
-- Horizontal line into text **input**
-- Full width rectangle at the bottom of the page into **footer**
-- Full width rectangle at the top of the page into **header**
-- Any text layer into the symbol with the corresponding name (example: Text layer with the text 'btn-blue' into the symbol named `btn-blue`)
+The following transformations are supported:
+
+- **Wide rectangle with medium size** into **button**
+- **Small square** into **checkbox**
+- **Small circle** into radio **button**
+- **Horizontal line** into text **input**
+- **Full width rectangle at the bottom of the page** into **footer**
+- **Full width rectangle at the top of the page** into **header**
+- **Any text layer** into the symbol with the corresponding name (example: Text layer with the text 'btn-blue' into the symbol named `btn-blue`)
 
 
 ### How it works

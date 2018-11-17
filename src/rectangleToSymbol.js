@@ -27,10 +27,9 @@ function findSymbol(symbols, name){
   for(var i = 0; i < symbols.length; i++){
     currentString = symbols[i].name.toUpperCase();
     if (currentString.indexOf(searchedString) !== -1 && currentString.length < minLength){
+      minLength = currentString.length;
       relevantSymbol = symbols[i];
-      minLength = searchedString.length;
     }
-    console.log("current string: " +currentString +" , length: " +currentString.length);
   }
   return relevantSymbol;
 }
